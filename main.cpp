@@ -89,14 +89,18 @@ void output (const int * const * mtx, int r, int c )
 int ** convert(const int * arr, size_t n, const size_t * lns, size_t rows)
 {
   int ** mtx = new int * [rows];
+  size_t poss = 0; //pos - possition in massive
   for (size_t i = 0; i < rows; ++i)
   {
-    size_t poss = 0; //pos - possition in massive
     mtx[i] = new int [lns[i]];
     for (size_t j = 0; j < lns[i]; ++j)
     {
-      mtx[i][j] = arr[poss];
-      poss++;
+      if (poss < n)
+      {
+        mtx[i][j] = arr[poss];
+        poss++;
+      }
     }
   }
+  return mtx;
 }
