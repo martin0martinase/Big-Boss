@@ -4,6 +4,8 @@ int ** make_mtx (int r,int c);
 void output (const int * const * mtx, int r, int c);
 void rm (int ** mtx, int r);
 void input (int ** mtx, int r, int c);
+int ** convert(const int * arr, size_t n, const size_t * lns, size_t rows);
+
 
 int main ()
 {
@@ -43,7 +45,6 @@ void rm (int ** mtx, int r)
   delete[] mtx;
 }
 
-
 int ** make_mtx (int r, int c)
 {
   int ** mtx = new int * [r];
@@ -82,5 +83,20 @@ void output (const int * const * mtx, int r, int c )
       std::cout << mtx[i][j] << " ";
     }
     std::cout << "\n";
+  }
+}
+
+int ** convert(const int * arr, size_t n, const size_t * lns, size_t rows)
+{
+  int ** mtx = new int * [rows];
+  for (size_t i = 0; i < rows; ++i)
+  {
+    size_t poss = 0; //pos - possition in massive
+    mtx[i] = new int [lns[i]];
+    for (size_t j = 0; j < lns[i]; ++j)
+    {
+      mtx[i][j] = arr[poss];
+      poss++;
+    }
   }
 }
