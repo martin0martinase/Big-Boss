@@ -2,8 +2,8 @@
 
 int ** make_mtx (int r,int c);
 void output (const int * const * mtx, int r, int c);
-void rm (int ** mtx, int r,int c);
-void inpit (int ** mtx, int r, int c);
+void rm (int ** mtx, int r);
+void input (int ** mtx, int r, int c);
 
 int main ()
 {
@@ -26,11 +26,12 @@ int main ()
   input (mtx, rows, cols);
   if (std::cin.fail())
   {
-    rm (mtx);
+    rm (mtx, rows);
     return 1;
   }
   output (mtx, rows, cols);
   rm (mtx, rows);
+  return 0;
 }
 
 void rm (int ** mtx, int r)
@@ -43,7 +44,7 @@ void rm (int ** mtx, int r)
 }
 
 
-int ** make (int r, int c)
+int ** make_mtx (int r, int c)
 {
   int ** mtx = new int * [r];
   for (size_t i = 0; i < r; ++i)
