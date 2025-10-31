@@ -1,8 +1,9 @@
 #include <iostream>
 
 int ** make_mtx (int r,int c);
-void  output (const int * const * mtx);
+void output (const int * const * mtx, int r, int c);
 void rm (int ** mtx, int r,int c);
+void inpit (int ** mtx, int r, int c);
 
 int main ()
 {
@@ -22,8 +23,14 @@ int main ()
   {
     return 2;
   }
-  output (mtx);
-  rm (mtx, rows, cols);
+  input (mtx, rows, cols);
+  if (std::cin.fail())
+  {
+    rm (mtx);
+    return 1;
+  }
+  output (mtx, rows, cols);
+  rm (mtx, rows);
 }
 
 void rm (int ** mtx, int r)
@@ -34,6 +41,7 @@ void rm (int ** mtx, int r)
   }
   delete[] mtx;
 }
+
 
 int ** make (int r, int c)
 {
@@ -51,4 +59,27 @@ int ** make (int r, int c)
     }
   }
   return mtx;
+}
+
+void input (int ** mtx, int r, int c)
+{
+  for (size_t i = 0; i < r; ++i)
+  {
+    for (size_t j = 0; j < c; ++j)
+    {
+      std::cin >> mtx[i][j];
+    }
+  }
+}
+
+void output (const int * const * mtx, int r, int c )
+{
+  for (size_t i = 0; i < r; ++i)
+  {
+    for (size_t j = 0; j < c; ++j)
+    {
+      std::cout << mtx[i][j] << " ";
+    }
+    std::cout << "\n";
+  }
 }
