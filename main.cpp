@@ -2,8 +2,10 @@
 
 int ** make_mtx (int r,int c);
 void output (const int * const * mtx, int r, int c);
-void rm (int ** mtx, int r,int c);
-void inpit (int ** mtx, int r, int c);
+void rm (int ** mtx, int r);
+void input (int ** mtx, int r, int c);
+int ** convert(const int * arr, size_t n, const size_t * lns, size_t rows);
+
 
 int main ()
 {
@@ -26,11 +28,12 @@ int main ()
   input (mtx, rows, cols);
   if (std::cin.fail())
   {
-    rm (mtx);
+    rm (mtx, rows);
     return 1;
   }
   output (mtx, rows, cols);
   rm (mtx, rows);
+  return 0;
 }
 
 void rm (int ** mtx, int r)
@@ -42,8 +45,7 @@ void rm (int ** mtx, int r)
   delete[] mtx;
 }
 
-
-int ** make (int r, int c)
+int ** make_mtx (int r, int c)
 {
   int ** mtx = new int * [r];
   for (size_t i = 0; i < r; ++i)
@@ -82,4 +84,23 @@ void output (const int * const * mtx, int r, int c )
     }
     std::cout << "\n";
   }
+}
+
+int ** convert(const int * arr, size_t n, const size_t * lns, size_t rows)
+{
+  int ** mtx = new int * [rows];
+  size_t poss = 0; //pos - possition in massive
+  for (size_t i = 0; i < rows; ++i)
+  {
+    mtx[i] = new int [lns[i]];
+    for (size_t j = 0; j < lns[i]; ++j)
+    {
+      if (poss < n)
+      {
+        mtx[i][j] = arr[poss];
+        poss++;
+      }
+    }
+  }
+  return mtx;
 }
