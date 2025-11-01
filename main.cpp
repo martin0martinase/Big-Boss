@@ -9,7 +9,7 @@ int ** convert(const int * arr, size_t n, const size_t * lns, size_t rows);
 
 int main ()
 {
-  int rows = 0;
+  //*int rows = 0;
   int cols = 0;
   std::cin >> rows >> cols;
   if (std::cin.fail())
@@ -33,6 +33,37 @@ int main ()
   }
   output (mtx, rows, cols);
   rm (mtx, rows);
+  return 0;*//
+
+  // test
+
+  const size_t n = 20;
+  int arr[n] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+  const size_t rows = 4;
+  size_t lns[rows] = {5, 5, 5, 5};
+
+  //check
+
+  size_t sum = 0;
+  for (size_t i = 0; i < rows; ++i)
+  {
+    sum += lns[i];
+  }
+  if (sum != n)
+  {
+    return 1;
+  }
+  int ** mtx = nullptr;
+  try
+  {
+    mtx = convert(arr, n, lns, rows);
+  }
+  catch (const std::bad_alloc &)
+  {
+    return 2;
+  }
+  output(mtx, rows, lns[0]);
+  rm(mtx, rows);
   return 0;
 }
 
@@ -62,7 +93,6 @@ int ** make_mtx (int r, int c)
   }
   return mtx;
 }
-
 void input (int ** mtx, int r, int c)
 {
   for (size_t i = 0; i < r; ++i)
