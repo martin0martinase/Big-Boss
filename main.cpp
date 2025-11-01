@@ -9,7 +9,7 @@ int ** convert(const int * arr, size_t n, const size_t * lns, size_t rows);
 
 int main ()
 {
-  //*int rows = 0;
+  /*int rows = 0;
   int cols = 0;
   std::cin >> rows >> cols;
   if (std::cin.fail())
@@ -33,7 +33,7 @@ int main ()
   }
   output (mtx, rows, cols);
   rm (mtx, rows);
-  return 0;*//
+  return 0;*/
 
   // test
 
